@@ -1,0 +1,15 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
+
+function fish_prompt
+    if test "$(fish_vcs_prompt)" = ""
+        set prompt (prompt_login) '> '
+    else
+        set prompt (prompt_login) '|' '(' (fish_vcs_prompt) ')' '> '
+    end
+end
+
+function fish_right_prompt -d "Write out the right prompt"
+    echo '<' $PWD '>'
+end
