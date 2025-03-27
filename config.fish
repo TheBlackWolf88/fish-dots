@@ -15,6 +15,20 @@ function fish_right_prompt -d "Write out the right prompt"
     echo '<'$PWD'>'
 end
 
+function run-linters
+    pushd ~/dev/csapat5
+    isort .
+    black .
+    mypy .
+    flake8 .
+    pytest .
+    popd
+end
+
+function venv
+    source ./.venv/bin/activate.fish
+end
+
 set -U fish_greeting
 
 set -g __fish_git_prompt_show_informative_status 1
