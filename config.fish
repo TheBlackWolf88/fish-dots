@@ -21,9 +21,32 @@ function run-linters
     black .
     mypy .
     flake8 .
+    isort .
     pytest .
     popd
 end
+
+
+function start-tms
+    pushd ~/dev/tms/compose/development
+    docker compose up
+    popd
+end
+
+function tms-exec-be
+    pushd ~/dev/tms/compose/development
+    docker compose exec --user www-data -it backend-core $argv
+    popd
+    
+end
+
+function tms-exec-fe
+    pushd ~/dev/tms/compose/development
+    docker compose exec -it frontend $argv
+    popd
+    
+end
+
 
 function venv
     source ./.venv/bin/activate.fish
